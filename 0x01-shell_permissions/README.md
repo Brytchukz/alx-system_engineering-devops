@@ -1,2 +1,2 @@
 #!/bin/bash
-0x00-shell_basics read me
+0x01-shell_permissions read me
