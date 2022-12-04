@@ -3,6 +3,7 @@ POSTMORTEM
 Following the release of alx-system_engineering-devops 0x19-postmortem project at about 06:00 West African Time (WAT), an outage occurred on an isolated Ubuntu 14.04 container running an Apache web server. GET requests on the server led to 500 Internal Server Error's, when the expected response was an HTML file defining a simple WordPress site.
 
 Debugging Process
+
 At about 18:06hours WAT, upon encountering the issue on opening the project and being encouraged to address it, I put on my Captain America's kit, ready to save the day! Then proceeded to initiate the following steps to solve the problem:
 
 Checked running processes using ps aux. Two apache2 processes - root and www-data - were properly running.
@@ -22,11 +23,13 @@ Tested another curl on the server. 200 A-ok!
 Wrote a Puppet manifest to automate fixing of the error.
 
 Summation
+
 The basic: typographical error. In details: the WordPress app was encountering a critical error in wp-settings.php when tyring to load the file class-wp-locale.phpp. The correct file name, located in the wp-content directory of the application folder, was class-wp-locale.php.
 
 Patch involved a simple fix on the typo, removing the trailing p.
 
 Prevention
+
 This outage was not a web server error, but an application error. To prevent such outages moving forward, please ensure the following:
 
 Test the application before deploying. This error would have arisen and could have been addressed earlier had the app been tested.
